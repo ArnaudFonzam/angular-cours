@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from './core/service/product.service';
-import { Product } from './core/model/product.model';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IProduct } from './core/interface/product.interface';
-import { IFormation } from './core/interface/formation.interface';
+import { IFormation } from 'src/app/core/interface/formation.interface';
+import { IProduct } from 'src/app/core/interface/product.interface';
+import { ProductService } from 'src/app/core/service/product.service';
+
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  selector: 'app-product-list',
+  templateUrl: './product-list.component.html',
+  styleUrls: ['./product-list.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class ProductListComponent implements OnInit {
   public title = 'Task Manager';
   public products: IProduct[] = [];
   public filteredProducts: IProduct[] = [];
+  private _productFilter = '';
   public formations: IFormation[] = [];
   public errorMsg: string = '';
-  private _productFilter = 'test';
   constructor(
     private productService: ProductService,
     private router: Router,
@@ -23,14 +23,10 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    //this.products = this.productService.getProducts();
     this.productService.getAPIProducts().subscribe({
       next: (formations) => (this.formations = formations),
       error: (err) => (this.errorMsg = err),
     });
-    //this.filteredProducts = this.products;
-    console.log(this.formations);
-    //this.productFilter = 'pantalon';
   }
   navigateTo() {
     this.router.navigateByUrl('/login');

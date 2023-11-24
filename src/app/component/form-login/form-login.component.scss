@@ -1,20 +1,14 @@
 .register-form {
   border: 1px solid black;
   border-radius: 5px;
-  width: 35%;
-  margin: 50px auto;
+  width: 100%;
   padding: 20px;
+  margin: 100px auto;
 }
-
 h1 {
   text-align: center;
 }
-
 /* display background color black on navbar scroll */
 .navbarScroll.navbarDark {
   background-color: black;
 }
-
-div {
-  color: blanchedalmond;
-}/*# sourceMappingURL=form-login.component.css.map */

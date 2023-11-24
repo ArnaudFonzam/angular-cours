@@ -14,12 +14,9 @@ import Validation from 'src/utils/validation';
 })
 export class FormLoginComponent implements OnInit {
   form: FormGroup = new FormGroup({
-    fullname: new FormControl(''),
-    username: new FormControl(''),
-    email: new FormControl(''),
-    password: new FormControl(''),
-    confirmPassword: new FormControl(''),
-    acceptTerms: new FormControl(false),
+    email: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required]),
+    acceptTerms: new FormControl(false, [Validators.required]),
   });
   submitted = false;
   constructor(private formBuilder: FormBuilder) {}
@@ -27,15 +24,6 @@ export class FormLoginComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group(
       {
-        fullname: ['', Validators.required],
-        username: [
-          '',
-          [
-            Validators.required,
-            Validators.minLength(6),
-            Validators.maxLength(20),
-          ],
-        ],
         email: ['', [Validators.required, Validators.email]],
         password: [
           '',
@@ -45,7 +33,6 @@ export class FormLoginComponent implements OnInit {
             Validators.maxLength(40),
           ],
         ],
-        confirmPassword: ['', Validators.required],
         acceptTerms: [false, Validators.requiredTrue],
       },
       {
@@ -53,17 +40,24 @@ export class FormLoginComponent implements OnInit {
       }
     );
   }
-  get f(): { [key: string]: AbstractControl } {
+  public get f(): { [key: string]: AbstractControl } {
     return this.form.controls;
   }
 
-  onSubmit(): void {
+  public onSubmit(): void {
     this.submitted = true;
     console.log(JSON.stringify(this.form.value, null, 2));
   }
 
-  onReset(): void {
-    this.submitted = false;
-    this.form.reset();
+  public handleForm(): void {
+    if (this.formValid()) {
+      this.onSubmit();
+    } else {
+      console.log('the form is not valid');
+    }
+  }
+
+  public formValid(): boolean {
+    return this.form.status === 'VALID';
   }
 }
