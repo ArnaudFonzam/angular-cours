@@ -9,15 +9,17 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { ProductListComponent } from './component/product-list/product-list.component';
-import { ProductTableComponent } from './component/product-table/product-table.component';
 import { StartRatingComponent } from './shared/components/start-rating/start-rating.component';
+import { DashboardFormationComponent } from './component/dashboard-formation/dashboard-formation.component';
+import { RegisterFormComponent } from './component/register-form/register-form.component';
 @NgModule({
   declarations: [
     AppComponent,
     FormLoginComponent,
     ProductListComponent,
-    ProductTableComponent,
     StartRatingComponent,
+    DashboardFormationComponent,
+    RegisterFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,8 +42,16 @@ import { StartRatingComponent } from './shared/components/start-rating/start-rat
         component: FormLoginComponent,
       },
       {
-        path: 'manageproduct',
-        component: ProductTableComponent,
+        path: 'register',
+        component: RegisterFormComponent,
+      },
+      {
+        path: 'ourformations',
+        component: ProductListComponent,
+      },
+      {
+        path: 'manageformation',
+        component: DashboardFormationComponent,
       },
       {
         path: '**',

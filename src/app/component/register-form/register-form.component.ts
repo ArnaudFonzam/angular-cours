@@ -5,20 +5,18 @@ import {
   Validators,
   FormControl,
 } from '@angular/forms';
-import { User } from 'src/app/core/model/user.model';
 @Component({
-  selector: 'app-form-login',
-  templateUrl: './form-login.component.html',
-  styleUrls: ['./form-login.component.scss'],
+  selector: 'app-register-form',
+  templateUrl: './register-form.component.html',
+  styleUrls: ['./register-form.component.scss'],
 })
-export class FormLoginComponent implements OnInit {
+export class RegisterFormComponent {
   userForm: FormGroup;
   submitted = false;
   constructor() {}
 
   ngOnInit(): void {
     this.userForm = new FormGroup({
-      name: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [
         Validators.required,

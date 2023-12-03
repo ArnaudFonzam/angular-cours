@@ -61,6 +61,10 @@ export class ProductService {
   getAPIProducts(): Observable<IFormation[]> {
     return this.http.get<IFormation[]>(`${this.apiUrl}/formations`);
   }
+  /*
+  postAPIProducts(Product product):Observable<IFormation> {
+    return this.http.post<IFormation>(`${this.apiUrl}/formations`);
+  }*/
 
   products$ = (): Observable<any> =>
     this.http.get<any>(`${this.apiUrl}/formations`);

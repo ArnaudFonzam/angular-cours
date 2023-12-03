@@ -15,19 +15,32 @@
           <a class="nav-link" [routerLink]="['home']">Acceuil</a>
         </li>
         <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" [routerLink]="['manageproduct']"
+          <a class="nav-link" [routerLink]="['ourformations']"
             >Nos formations</a
+          >
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['manageformation']"
+            >Gerer les formations</a
           >
         </li>
       </ul>
       <form class="d-flex">
         <button
-          class="btn btn-outline-primary"
+          class="btn btn-outline-primary m-2"
           type="submit"
-          (click)="navigateTo()"
+          (click)="navigateTo('register')"
           ariaCurrentWhenActive="page"
         >
-          Sign In
+          Sign up
+        </button>
+        <button
+          class="btn btn-primary m-2"
+          type="submit"
+          (click)="navigateTo('login')"
+          ariaCurrentWhenActive="page"
+        >
+          Sign in
         </button>
       </form>
     </div>
@@ -36,7 +49,7 @@
 <main>
   <router-outlet></router-outlet>
 </main>
-<nav class="navbar bg-body-tertiary b-0">
+<nav class="navbar bg-body-tertiary b-0 fix-bottom">
   <div class="container-fluid justify-content-center">
     <a class="navbar-brand" href="#">Fixed bottom</a>
   </div>
