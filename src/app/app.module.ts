@@ -38,7 +38,7 @@ import { RegisterFormComponent } from './component/register-form/register-form.c
         pathMatch: 'full',
       },
       {
-        path: 'login',
+        path: 'authentication',
         component: FormLoginComponent,
       },
       {
@@ -50,7 +50,7 @@ import { RegisterFormComponent } from './component/register-form/register-form.c
         component: ProductListComponent,
       },
       {
-        path: 'manageformation',
+        path: 'authentication/manageformation',
         component: DashboardFormationComponent,
       },
       {

@@ -16,11 +16,7 @@ export class ProductListComponent implements OnInit {
   private _productFilter = '';
   public formations: IFormation[] = [];
   public errorMsg: string = '';
-  constructor(
-    private productService: ProductService,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {}
+  constructor(private productService: ProductService, private router: Router) {}
 
   ngOnInit() {
     this.productService.getAPIProducts().subscribe({

@@ -20,28 +20,43 @@
           >
         </li>
         <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['home']">Contacts</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" [routerLink]="['manageformation']"
             >Gerer les formations</a
           >
         </li>
       </ul>
       <form class="d-flex">
-        <button
-          class="btn btn-outline-primary m-2"
-          type="submit"
-          (click)="navigateTo('register')"
-          ariaCurrentWhenActive="page"
-        >
-          Sign up
-        </button>
-        <button
-          class="btn btn-primary m-2"
-          type="submit"
-          (click)="navigateTo('login')"
-          ariaCurrentWhenActive="page"
-        >
-          Sign in
-        </button>
+        <div *ngIf="!userLogin">
+          <button
+            class="btn btn-outline-primary m-2"
+            type="submit"
+            (click)="navigateTo('register')"
+            ariaCurrentWhenActive="page"
+          >
+            Sign up
+          </button>
+          <button
+            class="btn btn-primary m-2"
+            type="submit"
+            (click)="navigateTo('authentication')"
+            ariaCurrentWhenActive="page"
+          >
+            Sign in
+          </button>
+        </div>
+        <div *ngIf="userLogin">
+          <button
+            class="btn btn-primary m-2"
+            type="submit"
+            (click)="logOut()"
+            ariaCurrentWhenActive="page"
+          >
+            Logout
+          </button>
+        </div>
       </form>
     </div>
   </div>

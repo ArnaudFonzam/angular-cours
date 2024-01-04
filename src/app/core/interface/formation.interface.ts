@@ -3,6 +3,6 @@ export interface IFormation {
   name: string;
   description: string;
   level: string;
-  price: number;
+  price: string;
   language: string;
 }

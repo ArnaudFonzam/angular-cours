@@ -16,9 +16,18 @@ export class AppComponent implements OnInit {
   public formations: IFormation[] = [];
   public errorMsg: string = '';
   constructor(private router: Router) {}
-
-  ngOnInit() {}
+  public userLogin = false;
+  ngOnInit() {
+    console.log(localStorage.getItem('token'));
+    if (localStorage.getItem('token') != null) {
+      this.userLogin = true;
+    }
+  }
   navigateTo(url: string) {
     this.router.navigateByUrl('/' + url);
+  }
+  logOut() {
+    localStorage.removeItem('token');
+    this.router.navigateByUrl('');
   }
 }

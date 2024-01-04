@@ -1,82 +1,98 @@
 <div class="container py-5">
   <button
-    type="button"
-    class="btn btn-outline-primary mb-3"
-    (click)="openPopup()"
+    class="btn btn-primary mx-1"
+    title="New Formation"
+    (click)="openModal(template, undefined)"
   >
-    New
+    <i class="bi bi-plus"></i>
   </button>
-  <div
-    class="modal"
-    tabindex="-1"
-    role="dialog"
-    [ngStyle]="{ display: displayStyle }"
-  >
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Add Training</h4>
-        </div>
-        <div class="modal-body">
-          <form [formGroup]="form">
-            <input
-              type="text"
-              formControlName="name"
-              class="form-control mb-3"
-              placeholder="Enter your Name"
-            />
-            <input
-              type="text"
-              formControlName="description"
-              class="form-control mb-3"
-              placeholder="Enter The description"
-            />
-            <input
-              type="text"
-              formControlName="price"
-              class="form-control mb-3"
-              placeholder="Enter the Price"
-            />
-            <input
-              type="text"
-              formControlName="language"
-              class="form-control mb-3"
-              placeholder="Enter your language"
-            />
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-outline-success"
-            (click)="handlerSubmit()"
-          >
-            ADD
-          </button>
-          <button
-            type="button"
-            class="btn btn-outline-danger"
-            (click)="closePopup()"
-          >
-            Close
-          </button>
+  <ng-template #template>
+    <div class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">
+              {{
+                form.value.id != null ? "Edit Formation" : "Add New Formation"
+              }}
+            </h4>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="form" (ngSubmit)="addUser()">
+              <input
+                type="text"
+                formControlName="name"
+                class="form-control mb-3"
+                placeholder="Enter your Name"
+              />
+              <input
+                type="text"
+                formControlName="description"
+                class="form-control mb-3"
+                placeholder="Enter The description"
+              />
+              <input
+                type="text"
+                formControlName="price"
+                class="form-control mb-3"
+                placeholder="Enter the Price"
+              />
+              <input
+                type="text"
+                formControlName="language"
+                class="form-control mb-3"
+                placeholder="Enter the language"
+              />
+              <input
+                type="text"
+                formControlName="level"
+                class="form-control mb-3"
+                placeholder="Enter the level"
+              />
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-outline-success">ADD</button>
+            <button
+              type="button"
+              class="btn-close close pull-right"
+              aria-label="Close"
+            >
+              Close
+            </button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </ng-template>
+
   <table class="table table-striped">
     <thead>
-      <th>Image</th>
+      <th>ID</th>
       <th>Name</th>
       <th>Description</th>
       <th>Price</th>
+      <th>Action</th>
     </thead>
     <tbody>
-      <tr>
-        <td>Savon Noir</td>
-        <td>Permet de guerrir les bouttons</td>
-        <td>3000</td>
-        <td>20</td>
+      <tr *ngFor="let prod of formations; let i = index">
+        <td>{{ i + 1 }}.</td>
+
+        <td>{{ prod.name }}</td>
+        <td>{{ prod.description }}</td>
+        <td>{{ prod.price }}</td>
+        <td>
+          <div>
+            <button class="btn btn-primary mx-1" title="Edit User">
+              <i class="bi bi-pencil"></i>
+              (click)="openModal(template, formation)"
+            </button>
+
+            <button class="btn btn-danger mx-1" title="Delete User">
+              <i class="bi bi-trash"></i>
+            </button>
+          </div>
+        </td>
       </tr>
     </tbody>
   </table>
